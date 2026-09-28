@@ -318,16 +318,15 @@
         .contacts { margin-top: 80px; }
 
         .contacts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .contact-card {
             display: flex;
             align-items: center;
             gap: 18px;
-            padding: 24px 26px;
+            padding: 24px 34px;
             background: linear-gradient(160deg, rgba(30,8,8,0.9) 0%, rgba(12,4,4,0.95) 100%);
             border: 1px solid rgba(192, 24, 24, 0.3);
             border-radius: 6px;
@@ -425,7 +424,7 @@
             .service-card { padding: 28px 22px; }
             .section-title { margin-bottom: 35px; }
             .contacts { margin-top: 60px; }
-            .contact-card { padding: 20px 22px; }
+            .contact-card { padding: 20px 26px; }
         }
     </style>
 </head>
@@ -452,9 +451,8 @@
 
     <div class="container">
 
-        <!-- ЗАМЕНИТЬ: ссылка на твой Telegram-канал -->
         <section class="tg-section">
-            <a href="https://t.me/ВАШ_КАНАЛ" target="_blank" rel="noopener" class="tg-btn">
+            <a href="https://t.me/+XuqdtEq1BAMxMTAy" target="_blank" rel="noopener" class="tg-btn">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
@@ -465,8 +463,9 @@
 
         <h2 class="section-title">Наши <span>услуги</span></h2>
 
-        <!-- ЗАМЕНИТЬ: тексты и цены услуг -->
+        <!-- ============ ЗАМЕНИТЬ: ТЕКСТЫ УСЛУГ ============ -->
         <div class="services">
+
             <div class="service-card">
                 <div class="service-icon">🕯️</div>
                 <h3>Услуга первая</h3>
@@ -494,42 +493,19 @@
                 <p>Описание четвёртой услуги. Можно добавить детали, условия работы, бонусы для новых клиентов.</p>
                 <div class="service-price">по договорённости</div>
             </div>
+
         </div>
+        <!-- ============ КОНЕЦ РЕДАКТИРУЕМОГО БЛОКА ============ -->
 
         <section class="contacts">
             <h2 class="section-title">Связаться <span>со мной</span></h2>
 
-            <!-- ЗАМЕНИТЬ: ссылки и значения контактов -->
             <div class="contacts-grid">
-                <a href="https://t.me/ВАШ_НИК" target="_blank" rel="noopener" class="contact-card">
+                <a href="https://t.me/vherog" target="_blank" rel="noopener" class="contact-card">
                     <div class="contact-icon">✈️</div>
                     <div class="contact-info">
                         <span class="contact-label">Telegram</span>
-                        <span class="contact-value">@ваш_ник</span>
-                    </div>
-                </a>
-
-                <a href="mailto:your@email.com" class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-info">
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">your@email.com</span>
-                    </div>
-                </a>
-
-                <a href="https://wa.me/79999999999" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-icon">💬</div>
-                    <div class="contact-info">
-                        <span class="contact-label">WhatsApp</span>
-                        <span class="contact-value">+7 999 999-99-99</span>
-                    </div>
-                </a>
-
-                <a href="https://vk.com/ваш_профиль" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-icon">🌐</div>
-                    <div class="contact-info">
-                        <span class="contact-label">VK</span>
-                        <span class="contact-value">vk.com/ваш_профиль</span>
+                        <span class="contact-value">@vherog</span>
                     </div>
                 </a>
             </div>
@@ -558,4 +534,4 @@
     </script>
 
 </body>
-  </html>
+</html>
