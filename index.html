@@ -9,9 +9,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --red: #c01818;
-            --red-bright: #ff2a2a;
-            --dark: #0a0505;
+            --red: #7a1010;
+            --red-mid: #a01818;
+            --red-soft: #c02020;
+            --dark: #060303;
         }
 
         html { scroll-behavior: smooth; }
@@ -19,21 +20,22 @@
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark);
-            color: #e0d5d5;
+            color: #b8a8a8;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
         }
 
+        /* Фон — темнее и спокойнее */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse at 50% 30%, rgba(192, 24, 24, 0.25) 0%, transparent 55%),
-                radial-gradient(ellipse at 20% 80%, rgba(120, 10, 10, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 70%, rgba(90, 5, 5, 0.25) 0%, transparent 50%),
-                radial-gradient(ellipse at center, #1a0808 0%, #0a0505 60%, #000 100%);
+                radial-gradient(ellipse at 50% 25%, rgba(120, 15, 15, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 85%, rgba(60, 8, 8, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 75%, rgba(50, 5, 5, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at center, #100606 0%, #060303 65%, #000 100%);
             z-index: -2;
         }
 
@@ -41,62 +43,34 @@
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: -1;
-            opacity: 0.5;
-        }
-
-        .embers {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .ember {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--red-bright);
-            border-radius: 50%;
-            box-shadow: 0 0 8px 2px rgba(255, 42, 42, 0.8);
-            animation: float linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+            opacity: 0.4;
         }
 
         header {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 70px 20px 40px;
         }
 
+        /* Маска — без пульсации, только мягкое свечение */
         .mask {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto 30px;
             display: block;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 30px rgba(255, 60, 60, 0.4));
-            animation: maskPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes maskPulse {
-            0%, 100% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.6)) drop-shadow(0 0 30px rgba(255,60,60,0.4)); }
-            50% { filter: drop-shadow(0 0 25px rgba(255,255,255,0.9)) drop-shadow(0 0 50px rgba(255,60,60,0.7)); }
+            filter: drop-shadow(0 0 8px rgba(180, 180, 180, 0.35))
+                    drop-shadow(0 0 18px rgba(140, 30, 30, 0.3));
+            opacity: 0.85;
         }
 
         .mask path {
             stroke-dasharray: 400;
             stroke-dashoffset: 400;
-            animation: draw 3s ease forwards;
+            animation: draw 3.5s ease forwards;
         }
 
         @keyframes draw { to { stroke-dashoffset: 0; } }
@@ -106,19 +80,12 @@
             font-weight: 900;
             font-size: clamp(2.8rem, 9vw, 6rem);
             letter-spacing: 0.05em;
-            color: var(--red);
+            color: #6a0e0e;
             text-transform: uppercase;
             position: relative;
             display: inline-block;
             line-height: 1;
-            text-shadow: 0 0 10px rgba(192,24,24,0.9), 0 0 30px rgba(192,24,24,0.6), 0 0 60px rgba(192,24,24,0.4);
-            filter: contrast(1.2);
-            animation: titleGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(192,24,24,0.9), 0 0 30px rgba(192,24,24,0.6), 0 0 60px rgba(192,24,24,0.4); }
-            50% { text-shadow: 0 0 15px rgba(255,42,42,1), 0 0 45px rgba(255,42,42,0.8), 0 0 90px rgba(255,42,42,0.5); }
+            text-shadow: 0 0 25px rgba(120, 15, 15, 0.5);
         }
 
         .title::before {
@@ -126,7 +93,7 @@
             position: absolute;
             inset: 0;
             color: transparent;
-            -webkit-text-stroke: 1px rgba(80, 5, 5, 0.8);
+            -webkit-text-stroke: 1px rgba(60, 5, 5, 0.7);
             z-index: -1;
             transform: translate(2px, 2px);
         }
@@ -134,23 +101,11 @@
         .subtitle {
             font-family: 'Oswald', sans-serif;
             font-weight: 500;
-            font-size: clamp(0.8rem, 2.5vw, 1.15rem);
+            font-size: clamp(0.8rem, 2.5vw, 1.05rem);
             letter-spacing: 0.35em;
-            color: #b8a8a8;
-            margin-top: 20px;
+            color: #7a6c6c;
+            margin-top: 22px;
             text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
-            animation: subtitleFlicker 5s ease-in-out infinite;
-        }
-
-        @keyframes subtitleFlicker {
-            0%, 100% { opacity: 1; }
-            45% { opacity: 1; }
-            46% { opacity: 0.4; }
-            47% { opacity: 1; }
-            92% { opacity: 1; }
-            93% { opacity: 0.6; }
-            94% { opacity: 1; }
         }
 
         .divider {
@@ -158,8 +113,7 @@
             max-width: 400px;
             height: 1px;
             margin: 50px auto;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-            box-shadow: 0 0 15px var(--red);
+            background: linear-gradient(90deg, transparent, rgba(140, 20, 20, 0.6), transparent);
             position: relative;
             z-index: 2;
         }
@@ -172,148 +126,141 @@
             z-index: 2;
         }
 
-        .tg-section { text-align: center; margin-bottom: 80px; }
+        /* ============ КНОПКИ ПЕРЕХОДА ============ */
+        .tg-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
 
         .tg-btn {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
-            padding: 20px 44px;
+            gap: 12px;
+            padding: 18px 38px;
             font-family: 'Oswald', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             text-decoration: none;
-            color: #fff;
-            background: linear-gradient(135deg, #1a0505 0%, #3a0808 100%);
-            border: 2px solid var(--red);
-            border-radius: 4px;
+            color: #c8b8b8;
+            background: linear-gradient(135deg, #140505 0%, #220808 100%);
+            border: 1px solid rgba(140, 20, 20, 0.6);
+            border-radius: 3px;
             position: relative;
-            overflow: hidden;
             transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(192,24,24,0.5), inset 0 0 20px rgba(192,24,24,0.1);
             cursor: pointer;
         }
 
-        .tg-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 42, 42, 0.4), transparent);
-            transition: left 0.6s ease;
-        }
-
         .tg-btn:hover {
-            color: #fff;
-            border-color: var(--red-bright);
-            box-shadow: 0 0 40px rgba(255,42,42,0.8), 0 0 80px rgba(192,24,24,0.5), inset 0 0 30px rgba(255,42,42,0.2);
-            transform: translateY(-3px);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            color: #e0c8c8;
+            border-color: var(--red-soft);
+            background: linear-gradient(135deg, #1e0808 0%, #2e0a0a 100%);
+            box-shadow: 0 0 25px rgba(160, 24, 24, 0.35);
+            transform: translateY(-2px);
         }
 
-        .tg-btn:hover::before { left: 100%; }
+        .tg-btn svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+            opacity: 0.85;
+        }
 
-        .tg-btn svg { width: 26px; height: 26px; transition: transform 0.3s ease; }
-        .tg-btn:hover svg { transform: translateX(5px) scale(1.1); }
+        .tg-btn:hover svg { transform: translateX(3px); opacity: 1; }
 
-        .tg-hint { margin-top: 18px; font-size: 0.85rem; color: #7a6a6a; letter-spacing: 0.1em; }
+        /* Кнопка чата — чуть более сдержанная */
+        .tg-btn.chat {
+            color: #a09898;
+            border-color: rgba(100, 18, 18, 0.5);
+        }
 
+        .tg-btn.chat:hover {
+            color: #d0c0c0;
+            border-color: var(--red-mid);
+            box-shadow: 0 0 22px rgba(140, 20, 20, 0.3);
+        }
+
+        /* ============ ЗАГОЛОВОК СЕКЦИИ ============ */
         .section-title {
             font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #d0c0c0;
+            color: #a89898;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 45px;
             position: relative;
             display: block;
         }
 
         .section-title span {
-            color: var(--red);
-            text-shadow: 0 0 15px rgba(255, 42, 42, 0.8);
+            color: var(--red-soft);
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px; height: 2px;
-            background: var(--red);
-            margin: 18px auto 0;
-            box-shadow: 0 0 12px var(--red);
+            width: 60px;
+            height: 1px;
+            background: rgba(140, 20, 20, 0.7);
+            margin: 16px auto 0;
         }
 
-        /* ============ УСЛУГИ — КОМПАКТНЫЙ ВИД ============ */
+        /* ============ УСЛУГИ ============ */
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .service-card {
-            background: linear-gradient(160deg, rgba(30,8,8,0.9) 0%, rgba(12,4,4,0.95) 100%);
-            border: 1px solid rgba(192, 24, 24, 0.3);
-            border-radius: 6px;
-            padding: 30px 28px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            background: linear-gradient(160deg, rgba(18, 6, 6, 0.85) 0%, rgba(8, 3, 3, 0.95) 100%);
+            border: 1px solid rgba(100, 18, 18, 0.35);
+            border-radius: 4px;
+            padding: 28px 26px;
+            transition: all 0.35s ease;
         }
 
         .service-card:hover {
-            border-color: var(--red-bright);
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 30px rgba(192,24,24,0.3);
+            border-color: rgba(160, 24, 24, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(100, 18, 18, 0.2);
         }
 
-        .service-card:hover::before { opacity: 1; }
-
-        /* Заголовок карточки-категории */
         .service-header {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding-bottom: 18px;
-            margin-bottom: 18px;
-            border-bottom: 1px dashed rgba(192, 24, 24, 0.35);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(100, 18, 18, 0.3);
         }
 
         .service-icon {
             flex-shrink: 0;
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 10px rgba(255, 42, 42, 0.7));
+            font-size: 1.6rem;
+            opacity: 0.8;
+            filter: grayscale(0.3);
         }
 
         .service-card h3 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
+            color: #d0c0c0;
         }
 
-        /* Список позиций внутри категории */
         .service-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 2px;
         }
 
         .service-list li {
@@ -322,39 +269,38 @@
             align-items: baseline;
             gap: 14px;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(192, 24, 24, 0.12);
-            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(100, 18, 18, 0.15);
+            font-size: 0.94rem;
         }
 
         .service-list li:last-child { border-bottom: none; }
 
         .service-list .name {
-            color: #d8c8c8;
-            line-height: 1.4;
+            color: #a89898;
+            line-height: 1.5;
             flex: 1;
         }
 
         .service-list .price {
             font-family: 'Oswald', sans-serif;
-            font-size: 1rem;
-            color: var(--red-bright);
+            font-size: 0.98rem;
+            color: #b82828;
             letter-spacing: 0.05em;
-            text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
             white-space: nowrap;
             flex-shrink: 0;
         }
 
-        /* Карточка "Способ оплаты" */
+        /* Карточка оплаты на всю ширину */
         .payment-card {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 28px 28px;
+            padding: 26px 26px;
         }
 
         .payment-card .service-header {
             justify-content: center;
             border-bottom: none;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             padding-bottom: 0;
         }
 
@@ -362,34 +308,31 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-top: 10px;
         }
 
         .payment-tag {
             font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            padding: 10px 22px;
-            border: 1px solid rgba(192, 24, 24, 0.5);
-            border-radius: 4px;
-            color: #fff;
-            background: rgba(192, 24, 24, 0.08);
-            box-shadow: 0 0 15px rgba(192, 24, 24, 0.2);
+            padding: 9px 20px;
+            border: 1px solid rgba(100, 18, 18, 0.5);
+            border-radius: 3px;
+            color: #b0a0a0;
+            background: rgba(100, 18, 18, 0.06);
             transition: all 0.3s ease;
         }
 
         .payment-tag:hover {
-            border-color: var(--red-bright);
-            box-shadow: 0 0 25px rgba(255, 42, 42, 0.6);
-            color: var(--red-bright);
-            text-shadow: 0 0 10px rgba(255, 42, 42, 0.8);
-            transform: translateY(-3px);
+            border-color: rgba(160, 24, 24, 0.7);
+            color: #d0b8b8;
+            background: rgba(100, 18, 18, 0.12);
         }
 
         /* ============ КОНТАКТЫ ============ */
-        .contacts { margin-top: 80px; }
+        .contacts { margin-top: 70px; }
 
         .contacts-grid {
             display: flex;
@@ -400,114 +343,92 @@
             display: flex;
             align-items: center;
             gap: 18px;
-            padding: 24px 34px;
-            background: linear-gradient(160deg, rgba(30,8,8,0.9) 0%, rgba(12,4,4,0.95) 100%);
-            border: 1px solid rgba(192, 24, 24, 0.3);
-            border-radius: 6px;
+            padding: 22px 32px;
+            background: linear-gradient(160deg, rgba(18, 6, 6, 0.85) 0%, rgba(8, 3, 3, 0.95) 100%);
+            border: 1px solid rgba(100, 18, 18, 0.35);
+            border-radius: 4px;
             text-decoration: none;
-            color: #e0d5d5;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 42, 42, 0.15), transparent);
-            transition: left 0.6s ease;
+            color: #b8a8a8;
+            transition: all 0.35s ease;
         }
 
         .contact-card:hover {
-            border-color: var(--red-bright);
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 30px rgba(192,24,24,0.4);
+            border-color: rgba(160, 24, 24, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(100, 18, 18, 0.25);
         }
-
-        .contact-card:hover::before { left: 100%; }
 
         .contact-icon {
             flex-shrink: 0;
-            width: 48px; height: 48px;
+            width: 46px; height: 46px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            border: 1px solid rgba(192, 24, 24, 0.4);
+            font-size: 1.4rem;
+            border: 1px solid rgba(100, 18, 18, 0.5);
             border-radius: 50%;
-            background: rgba(192, 24, 24, 0.08);
-            filter: drop-shadow(0 0 8px rgba(255, 42, 42, 0.5));
+            background: rgba(100, 18, 18, 0.06);
+            opacity: 0.85;
             transition: all 0.3s ease;
         }
 
         .contact-card:hover .contact-icon {
-            background: rgba(192, 24, 24, 0.25);
-            box-shadow: 0 0 20px rgba(255, 42, 42, 0.7);
-            transform: scale(1.1);
+            border-color: rgba(160, 24, 24, 0.7);
+            opacity: 1;
         }
 
         .contact-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 
         .contact-label {
             font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #7a6a6a;
+            color: #6a5a5a;
         }
 
         .contact-value {
             font-size: 0.95rem;
-            color: #fff;
+            color: #c8b8b8;
             font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             transition: color 0.3s ease;
         }
 
         .contact-card:hover .contact-value {
-            color: var(--red-bright);
-            text-shadow: 0 0 10px rgba(255, 42, 42, 0.7);
+            color: #e0c8c8;
         }
 
         footer {
             text-align: center;
             padding: 40px 20px;
-            color: #554444;
-            font-size: 0.8rem;
+            color: #453838;
+            font-size: 0.78rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            border-top: 1px solid rgba(192, 24, 24, 0.15);
+            border-top: 1px solid rgba(100, 18, 18, 0.15);
             position: relative;
             z-index: 2;
         }
 
-        footer .red { color: var(--red); text-shadow: 0 0 10px rgba(255, 42, 42, 0.5); }
+        footer .red { color: #8a1818; }
 
         @media (max-width: 600px) {
-            header { padding: 40px 15px 20px; }
-            .mask { width: 120px; height: 120px; margin-bottom: 20px; }
-            .subtitle { letter-spacing: 0.2em; }
+            header { padding: 45px 15px 20px; }
+            .mask { width: 110px; height: 110px; margin-bottom: 20px; }
+            .subtitle { letter-spacing: 0.22em; }
             .divider { margin: 35px auto; }
-            .tg-section { margin-bottom: 60px; }
-            .tg-btn { padding: 16px 28px; font-size: 0.95rem; gap: 10px; width: 100%; justify-content: center; }
-            .service-card { padding: 24px 20px; }
+            .tg-section { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 50px; }
+            .tg-btn { padding: 15px 24px; font-size: 0.92rem; justify-content: center; gap: 10px; }
+            .service-card { padding: 22px 20px; }
             .services { grid-template-columns: 1fr; }
-            .section-title { margin-bottom: 35px; }
-            .contacts { margin-top: 60px; }
-            .contact-card { padding: 20px 26px; }
+            .section-title { margin-bottom: 30px; }
+            .contacts { margin-top: 50px; }
+            .contact-card { padding: 18px 24px; }
             .service-list li { font-size: 0.9rem; }
-            .service-list .price { font-size: 0.92rem; }
         }
     </style>
 </head>
 <body>
-
-    <div class="embers" id="embers"></div>
 
     <header>
         <svg class="mask" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -528,6 +449,7 @@
 
     <div class="container">
 
+        <!-- КНОПКИ: КАНАЛ + ЧАТ -->
         <section class="tg-section">
             <a href="https://t.me/+XuqdtEq1BAMxMTAy" target="_blank" rel="noopener" class="tg-btn">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -535,14 +457,20 @@
                 </svg>
                 Перейти в канал
             </a>
-            <p class="tg-hint">// только для тех, кто готов услышать</p>
+
+            <a href="https://t.me/ChatMysteryorg" target="_blank" rel="noopener" class="tg-btn chat">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 5.94 2 10.8c0 2.77 1.46 5.23 3.75 6.86L5 22l4.42-2.33c.82.15 1.69.23 2.58.23 5.52 0 10-3.94 10-8.8S17.52 2 12 2zm1 12.4h-2v-2h2v2zm0-3.4h-2V6.6h2V11z"/>
+                </svg>
+                Перейти в чат
+            </a>
         </section>
 
         <h2 class="section-title">Наши <span>услуги</span></h2>
 
         <div class="services">
 
-            <!-- КАТЕГОРИЯ 1: ПОИСК / ПРОБИВ -->
+            <!-- ПОИСК / ПРОБИВ -->
             <div class="service-card">
                 <div class="service-header">
                     <div class="service-icon">🔍</div>
@@ -564,7 +492,7 @@
                 </ul>
             </div>
 
-            <!-- КАТЕГОРИЯ 2: ФИЗИЧЕСКИЕ НОМЕРА -->
+            <!-- ФИЗИЧЕСКИЕ НОМЕРА -->
             <div class="service-card">
                 <div class="service-header">
                     <div class="service-icon">📱</div>
@@ -578,7 +506,7 @@
                 </ul>
             </div>
 
-            <!-- КАТЕГОРИЯ 3: ПРАЙС / ОБУЧЕНИЕ -->
+            <!-- ПРАЙС / ОБУЧЕНИЕ -->
             <div class="service-card">
                 <div class="service-header">
                     <div class="service-icon">📚</div>
@@ -600,7 +528,7 @@
                 </ul>
             </div>
 
-            <!-- КАТЕГОРИЯ 4: РЕКЛАМА -->
+            <!-- РЕКЛАМА -->
             <div class="service-card">
                 <div class="service-header">
                     <div class="service-icon">📢</div>
@@ -614,7 +542,7 @@
                 </ul>
             </div>
 
-            <!-- КАТЕГОРИЯ 5: СПОСОБ ОПЛАТЫ (на всю ширину) -->
+            <!-- ОПЛАТА -->
             <div class="service-card payment-card">
                 <div class="service-header">
                     <div class="service-icon">💳</div>
@@ -647,24 +575,8 @@
     </div>
 
     <footer>
-        © 2024 <span class="red">MYSTERY</span> — Все права защищены. Тебя никто не услышит.
+        © 2024 <span class="red">MYSTERY</span> — Все права защищены
     </footer>
 
-    <script>
-        const embersContainer = document.getElementById('embers');
-        const emberCount = 30;
-        for (let i = 0; i < emberCount; i++) {
-            const ember = document.createElement('div');
-            ember.className = 'ember';
-            ember.style.left = Math.random() * 100 + '%';
-            ember.style.bottom = '-10px';
-            ember.style.animationDuration = (Math.random() * 8 + 6) + 's';
-            ember.style.animationDelay = (Math.random() * 10) + 's';
-            ember.style.opacity = Math.random() * 0.7 + 0.3;
-            ember.style.width = ember.style.height = (Math.random() * 3 + 1.5) + 'px';
-            embersContainer.appendChild(ember);
-        }
-    </script>
-
 </body>
-</html>
+                </html>
