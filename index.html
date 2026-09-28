@@ -247,9 +247,10 @@
             box-shadow: 0 0 12px var(--red);
         }
 
+        /* ============ УСЛУГИ — КОМПАКТНЫЙ ВИД ============ */
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 25px;
         }
 
@@ -257,7 +258,7 @@
             background: linear-gradient(160deg, rgba(30,8,8,0.9) 0%, rgba(12,4,4,0.95) 100%);
             border: 1px solid rgba(192, 24, 24, 0.3);
             border-radius: 6px;
-            padding: 35px 28px;
+            padding: 30px 28px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
@@ -276,45 +277,118 @@
 
         .service-card:hover {
             border-color: var(--red-bright);
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 30px rgba(192,24,24,0.3);
         }
 
         .service-card:hover::before { opacity: 1; }
 
+        /* Заголовок карточки-категории */
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed rgba(192, 24, 24, 0.35);
+        }
+
         .service-icon {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            display: inline-block;
+            flex-shrink: 0;
+            font-size: 1.8rem;
             filter: drop-shadow(0 0 10px rgba(255, 42, 42, 0.7));
         }
 
         .service-card h3 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.25rem;
-            letter-spacing: 0.1em;
+            font-size: 1.3rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: #fff;
-            margin-bottom: 14px;
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
         }
 
-        .service-card p {
-            font-size: 0.92rem;
-            color: #9a8888;
-            line-height: 1.7;
-            margin-bottom: 20px;
+        /* Список позиций внутри категории */
+        .service-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .service-price {
+        .service-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(192, 24, 24, 0.12);
+            font-size: 0.95rem;
+        }
+
+        .service-list li:last-child { border-bottom: none; }
+
+        .service-list .name {
+            color: #d8c8c8;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .service-list .price {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--red-bright);
             letter-spacing: 0.05em;
             text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
-            padding-top: 15px;
-            border-top: 1px dashed rgba(192, 24, 24, 0.3);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
+        /* Карточка "Способ оплаты" */
+        .payment-card {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 28px 28px;
+        }
+
+        .payment-card .service-header {
+            justify-content: center;
+            border-bottom: none;
+            margin-bottom: 14px;
+            padding-bottom: 0;
+        }
+
+        .payment-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .payment-tag {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            border: 1px solid rgba(192, 24, 24, 0.5);
+            border-radius: 4px;
+            color: #fff;
+            background: rgba(192, 24, 24, 0.08);
+            box-shadow: 0 0 15px rgba(192, 24, 24, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .payment-tag:hover {
+            border-color: var(--red-bright);
+            box-shadow: 0 0 25px rgba(255, 42, 42, 0.6);
+            color: var(--red-bright);
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* ============ КОНТАКТЫ ============ */
         .contacts { margin-top: 80px; }
 
         .contacts-grid {
@@ -421,10 +495,13 @@
             .divider { margin: 35px auto; }
             .tg-section { margin-bottom: 60px; }
             .tg-btn { padding: 16px 28px; font-size: 0.95rem; gap: 10px; width: 100%; justify-content: center; }
-            .service-card { padding: 28px 22px; }
+            .service-card { padding: 24px 20px; }
+            .services { grid-template-columns: 1fr; }
             .section-title { margin-bottom: 35px; }
             .contacts { margin-top: 60px; }
             .contact-card { padding: 20px 26px; }
+            .service-list li { font-size: 0.9rem; }
+            .service-list .price { font-size: 0.92rem; }
         }
     </style>
 </head>
@@ -463,39 +540,95 @@
 
         <h2 class="section-title">Наши <span>услуги</span></h2>
 
-        <!-- ============ ЗАМЕНИТЬ: ТЕКСТЫ УСЛУГ ============ -->
         <div class="services">
 
+            <!-- КАТЕГОРИЯ 1: ПОИСК / ПРОБИВ -->
             <div class="service-card">
-                <div class="service-icon">🕯️</div>
-                <h3>Услуга первая</h3>
-                <p>Описание первой услуги. Здесь вы рассказываете, что именно предлагаете клиенту, какие задачи решаете и чем это выгодно.</p>
-                <div class="service-price">от 1 000 ₽</div>
+                <div class="service-header">
+                    <div class="service-icon">🔍</div>
+                    <h3>Поиск / Пробив</h3>
+                </div>
+                <ul class="service-list">
+                    <li>
+                        <span class="name">Информационное досье</span>
+                        <span class="price">9 USDT</span>
+                    </li>
+                    <li>
+                        <span class="name">Оперативное досье</span>
+                        <span class="price">9.99 USDT</span>
+                    </li>
+                    <li>
+                        <span class="name">Разведывательное досье</span>
+                        <span class="price">13.10 USDT</span>
+                    </li>
+                </ul>
             </div>
 
+            <!-- КАТЕГОРИЯ 2: ФИЗИЧЕСКИЕ НОМЕРА -->
             <div class="service-card">
-                <div class="service-icon">🔮</div>
-                <h3>Услуга вторая</h3>
-                <p>Описание второй услуги. Кратко и по делу — что входит, сроки выполнения, какой результат получит заказчик.</p>
-                <div class="service-price">от 2 500 ₽</div>
+                <div class="service-header">
+                    <div class="service-icon">📱</div>
+                    <h3>Физические номера</h3>
+                </div>
+                <ul class="service-list">
+                    <li>
+                        <span class="name">Номера +7 / +380</span>
+                        <span class="price">9 USDT</span>
+                    </li>
+                </ul>
             </div>
 
+            <!-- КАТЕГОРИЯ 3: ПРАЙС / ОБУЧЕНИЕ -->
             <div class="service-card">
-                <div class="service-icon">🩸</div>
-                <h3>Услуга третья</h3>
-                <p>Описание третьей услуги. Расскажите о преимуществах, уникальности предложения и почему стоит выбрать именно вас.</p>
-                <div class="service-price">от 5 000 ₽</div>
+                <div class="service-header">
+                    <div class="service-icon">📚</div>
+                    <h3>Прайс / Обучение</h3>
+                </div>
+                <ul class="service-list">
+                    <li>
+                        <span class="name">Наставничество (менторство), личное</span>
+                        <span class="price">15.30 USDT/мес</span>
+                    </li>
+                    <li>
+                        <span class="name">Архив — доступ на месяц</span>
+                        <span class="price">5.99 USDT/мес</span>
+                    </li>
+                    <li>
+                        <span class="name">Архив — доступ навсегда</span>
+                        <span class="price">15.30 USDT</span>
+                    </li>
+                </ul>
             </div>
 
+            <!-- КАТЕГОРИЯ 4: РЕКЛАМА -->
             <div class="service-card">
-                <div class="service-icon">🌑</div>
-                <h3>Услуга четвёртая</h3>
-                <p>Описание четвёртой услуги. Можно добавить детали, условия работы, бонусы для новых клиентов.</p>
-                <div class="service-price">по договорённости</div>
+                <div class="service-header">
+                    <div class="service-icon">📢</div>
+                    <h3>Реклама</h3>
+                </div>
+                <ul class="service-list">
+                    <li>
+                        <span class="name">Размещение рекламы (за час)</span>
+                        <span class="price">200 ₽ / 3.99 USDT</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- КАТЕГОРИЯ 5: СПОСОБ ОПЛАТЫ (на всю ширину) -->
+            <div class="service-card payment-card">
+                <div class="service-header">
+                    <div class="service-icon">💳</div>
+                    <h3>Способы оплаты</h3>
+                </div>
+                <div class="payment-tags">
+                    <span class="payment-tag">TON</span>
+                    <span class="payment-tag">USDT</span>
+                    <span class="payment-tag">СПБ</span>
+                    <span class="payment-tag">TRC20</span>
+                </div>
             </div>
 
         </div>
-        <!-- ============ КОНЕЦ РЕДАКТИРУЕМОГО БЛОКА ============ -->
 
         <section class="contacts">
             <h2 class="section-title">Связаться <span>со мной</span></h2>
